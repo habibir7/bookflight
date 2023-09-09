@@ -1,0 +1,146 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  // shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+}
+
+model Post {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  title     String   @db.VarChar(255)
+  content   String?
+  published Boolean  @default(false)
+  author    User     @relation(fields: [authorId], references: [id])
+  authorId  Int
+}
+
+model Profile {
+  id     Int     @id @default(autoincrement())
+  bio    String?
+  photo  String?
+  user   User    @relation(fields: [userId], references: [id])
+  userId Int     @unique
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  uniqId    String
+  email     String    @unique
+  password  String
+  name      String?
+  posts     Post[]
+  profile   Profile?
+  isActive Boolean   @default(false)
+  status String?
+  phone     String?
+  fullname  String?
+  regency   City      @relation(fields: [regencyId], references: [id])
+  regencyId Int
+  Address   Address[]
+  TicketFlight TicketFlight[]
+}
+
+model Address {
+  id     Int     @id @default(autoincrement())
+  street String?
+  zip    Int?
+  userId Int
+  user   User    @relation(fields: [userId], references: [id])
+}
+
+// province & city 
+model Provinces {
+  id   Int     @unique
+  name String?
+  City City[]
+}
+
+model City {
+  id         Int       @unique
+  name       String?
+  provinceId Int
+  province   Provinces @relation(fields: [provinceId], references: [id])
+  User       User[]
+  Airport    Airport[]
+}
+
+model Airline {
+  id    Int     @id @default(autoincrement())
+  name  String
+  photo String?
+}
+
+model Airport {
+  id      Int              @id @default(autoincrement())
+  name    String
+  code    String
+  regency City             @relation(fields: [cityId], references: [id])
+  cityId  Int
+  from    FlightSchedule[] @relation(name: "from")
+  to      FlightSchedule[] @relation(name: "to")
+}
+
+model FlightSchedule {
+  id               Int                @id @default(autoincrement())
+  code             String
+  takeoff          DateTime
+  landing          DateTime
+  from             Airport            @relation(name: "from", fields: [airportIdfrom], references: [id])
+  to               Airport            @relation(name: "to", fields: [airportIdto], references: [id])
+  airportIdfrom    Int
+  airportIdto      Int
+  transit          Int                @default(0)
+  FlightFacilities FlightFacilities[]
+}
+
+model FlightFacilities {
+  id               Int            @id @default(autoincrement())
+  flightSchedule   FlightSchedule @relation(fields: [flightScheduleId], references: [id])
+  flightScheduleId Int
+  listSchedule     Facilities     @relation(fields: [listScheduleId], references: [id])
+  listScheduleId   Int
+}
+
+model Facilities {
+  id               Int                @id @default(autoincrement())
+  name             String
+  FlightFacilities FlightFacilities[]
+}
+
+model TicketFlight {
+  id Int @id @default(autoincrement())
+  passenger User @relation(fields: [passengerId],references: [id])
+  passengerId Int
+  PassengerDetail PassengerDetail[]
+  isRefundable Boolean
+  iscanReschedule Boolean
+  isWithInsurance Boolean
+  totalPayment Int
+  status TicketFlightStatus @relation(fields: [statusId],references: [id])
+  statusId Int
+}
+
+model PassengerDetail {
+  id Int @id @default(autoincrement())
+  title String
+  fullname String
+  nationality String
+  ticketFlight TicketFlight @relation(fields: [ticketFlightId],references: [id])
+  ticketFlightId Int
+}
+
+model TicketFlightStatus {
+  id Int @id @default(autoincrement())
+  name String
+  TicketFlight TicketFlight[]
+}
