@@ -44,8 +44,8 @@ model User {
   status String?
   phone     String?
   fullname  String?
-  regency   City      @relation(fields: [regencyId], references: [id])
-  regencyId Int
+  regency   City?      @relation(fields: [regencyId], references: [id])
+  regencyId Int?
   Address   Address[]
   TicketFlight TicketFlight[]
 }

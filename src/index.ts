@@ -18,5 +18,5 @@ app.use(morgan('dev'))
 app.use("/",router)
 
 app.listen(3000, () =>
-  console.log(`⚡️[server]: Server is running at https://localhost:3000`)
+  console.log(`⚡️[server]: Server is running at http://localhost:3000`)
 )
