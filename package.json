@@ -12,7 +12,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc && node ./dist/src/index.js",
     "start": "node ./dist/src/index.js",
-    "postbuild" : "mv node_module ./dist"
+    "postbuild" : "mv node_modules ./dist"
   },
   "keywords": [],
   "author": "",
