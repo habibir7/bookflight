@@ -13,6 +13,7 @@ const EmailProvider = async (req: any, res: any, next: any) => {
 }
 
 router.get('/',UserController.get)
+router.get('/detail',Token.checkToken,UserController.detail)
 router.post('/register',UserController.register)
 router.post('/login',UserController.login)
 router.post('/activated',UserController.activated)

@@ -167,6 +167,23 @@ const UserController = {
     })
     res.json(result)
   },
+  detail: async (req: any, res: any, next: any) => {
+    let { email } = req.payload
+    const detailUser = await prisma.user.findMany({
+      where: {email},
+      include: { Address: true, TicketFlight: true, regency: true, posts: true }
+    })
+    // postpone
+    const result = {
+      name: detailUser[0].name !== null ? detailUser[0].name : undefined,
+      uniqId: detailUser[0].uniqId,
+      email: detailUser[0].email,
+      phone: detailUser[0].phone !== null ? detailUser[0].phone : undefined,
+      fullname: detailUser[0].fullname !== null ? detailUser[0].fullname : undefined,
+      isActive: detailUser[0].isActive,
+    }
+    return response(res, 200, 'detail user success', result)
+  },
   activated: async (req: any, res: any, next: any) => {
     let { email } = req.body
     if (!validateEmail(email)) {
