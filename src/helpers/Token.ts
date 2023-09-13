@@ -1,15 +1,19 @@
+import { Request, Response, NextFunction } from "express";
 import jwt, { JsonWebTokenError, TokenExpiredError } from 'jsonwebtoken';
-import { Response, NextFunction } from 'express'; 
 import * as dotenv from 'dotenv';
-import response from '../helpers/Common'; 
+import response from '../helpers/Common';
 dotenv.config();
+
+export interface CustomRequest<T = any> extends Request {
+    payload: T;
+}
 
 const Token = {
     generateToken: (payload: any): string => {
         const token = jwt.sign(payload, process.env.JWT_KEY!, { expiresIn: '30d' });
         return token;
     },
-    checkToken: async (req: any, res: Response, next: NextFunction) => {
+    checkToken: async (req: CustomRequest, res: Response, next: NextFunction) => {
         try {
             let token;
             if (req.headers.authorization) {
@@ -21,12 +25,12 @@ const Token = {
             } else {
                 return response(res, 404, "Server needs a token");
             }
-        } catch (err:any) {
+        } catch (err: any) {
             console.error(err.message);
             if (err instanceof JsonWebTokenError) {
                 return response(res, 401, "Invalid token");
             } else if (err instanceof TokenExpiredError) {
-                return response(res, 401, "Token expired",err);
+                return response(res, 401, "Token expired", err);
             } else {
                 return response(res, 401, "Token not active");
             }

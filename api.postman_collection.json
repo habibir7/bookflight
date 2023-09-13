@@ -16,7 +16,7 @@
 					"urlencoded": [
 						{
 							"key": "email",
-							"value": "ega@gmail.com",
+							"value": "era@gmail.com",
 							"type": "text"
 						},
 						{
@@ -27,12 +27,12 @@
 					]
 				},
 				"url": {
-					"raw": "{{base_url}}/users/login",
+					"raw": "{{base_url}}/auth/login",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
-						"users",
+						"auth",
 						"login"
 					]
 				}
@@ -49,12 +49,12 @@
 					"urlencoded": [
 						{
 							"key": "name",
-							"value": "ega",
+							"value": "era",
 							"type": "text"
 						},
 						{
 							"key": "email",
-							"value": "ega@gmail.com",
+							"value": "era@gmail.com",
 							"type": "text"
 						},
 						{
@@ -65,13 +65,104 @@
 					]
 				},
 				"url": {
-					"raw": "{{base_url}}/users/register",
+					"raw": "{{base_url}}/auth/register",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
-						"users",
+						"auth",
 						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Auth Activeted",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "ega@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "old",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "123465@Aa",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/auth/activated",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"auth",
+						"activated"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Token Checker",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiZWdhIiwidW5pcUlkIjoiNWFkNGQ0MGMtNTVjNS00YzA0LWExMmMtZTVlZmJkYjkyMjg4IiwiZW1haWwiOiJlZ2FAZ21haWwuY29tIiwiaXNBY3RpdmUiOmZhbHNlLCJpYXQiOjE2OTQ1ODQ0ODAsImV4cCI6MTY5NzE3NjQ4MH0.OI41hq4ivluxyP_6CBJa5fk8nasbJWXSqcI-AIN2u3A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "oldpedurena@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "old",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123465@Aa",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/auth/token",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"auth",
+						"token"
 					]
 				}
 			},
@@ -123,50 +214,7 @@
 			"response": []
 		},
 		{
-			"name": "User",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "email",
-							"value": "oldpedurena@gmail.com",
-							"type": "text"
-						},
-						{
-							"key": "name",
-							"value": "old",
-							"type": "text",
-							"disabled": true
-						},
-						{
-							"key": "password",
-							"value": "123465@Aa",
-							"type": "text",
-							"disabled": true
-						}
-					]
-				},
-				"url": {
-					"raw": "{{base_url}}/users/activated",
-					"host": [
-						"{{base_url}}"
-					],
-					"path": [
-						"users",
-						"activated"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Token Checker",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
+			"name": "User by Id",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -180,34 +228,14 @@
 				},
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "urlencoded",
-					"urlencoded": [
-						{
-							"key": "email",
-							"value": "oldpedurena@gmail.com",
-							"type": "text"
-						},
-						{
-							"key": "name",
-							"value": "old",
-							"type": "text"
-						},
-						{
-							"key": "password",
-							"value": "123465@Aa",
-							"type": "text"
-						}
-					]
-				},
 				"url": {
-					"raw": "{{base_url}}/users/token",
+					"raw": "{{base_url}}/users/5ad4d40c-55c5-4c04-a12c-e5efbdb92288",
 					"host": [
 						"{{base_url}}"
 					],
 					"path": [
 						"users",
-						"token"
+						"5ad4d40c-55c5-4c04-a12c-e5efbdb92288"
 					]
 				}
 			},

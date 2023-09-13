@@ -1,11 +1,11 @@
 import express from "express"
-import LocationController from "../controller/Location"
+import {getProvince,getRegency,getById} from "../controller/Location"
 
 const router = express.Router()
 
-router.get('/provincy',LocationController.getProvince)
-router.get('/regency',LocationController.getRegency)
-router.get('/:id',LocationController.getById)
+router.get('/provincy',getProvince)
+router.get('/regency',getRegency)
+router.get('/:id',getById)
 
 
 export default router

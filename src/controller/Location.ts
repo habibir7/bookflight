@@ -1,35 +1,52 @@
-
-import createHttpError from "http-errors";
-import express from "express"
+import {Request,Response,NextFunction} from "express"
 import { PrismaClient } from "@prisma/client";
-import argon2 from "argon2"
 const prisma = new PrismaClient()
+import response from '../helpers/Common'
+import { validateInteger } from "../helpers/Validator";
 
-const LocationController = {
-  getRegency: async (req: any, res: any, next: any) => {
-    const city = await prisma.city.findMany({})
-    res.json(city)
-  },
-  getProvince: async (req: any, res: any, next: any) => {
-    const province = await prisma.provinces.findMany({})
-    res.json(province)
-  },
-  getById: async (req: any, res: any, next: any) => {
-    console.log(req.params.id)
-    const city = await prisma.city.findMany({where:{
-        provinceId: parseInt(req.params.id)
-    }})
-    if(!city.length) {
-        const result = await prisma.city.findMany({where:{
-            id: parseInt(req.params.id)
-        }})
-        if(!result.length) return res.json({status:404})
-        return res.status(200).json({status:200,data:result[0]})
-    }
-    res.status(200).json(city)
-  },
-
-
+export async function getRegency(req: Request, res: Response, next: NextFunction) {
+  try {
+    const cities = await prisma.city.findMany({});
+    response(res, 200, 'get city success',cities)
+  } catch (error) {
+    return response(res, 404, 'error response')
+  }
 }
 
-export default LocationController
+export async function getProvince(req: Request, res: Response, next: NextFunction) {
+  try {
+    const provinces = await prisma.provinces.findMany({});
+    response(res, 200, 'get provinces success',provinces)
+  } catch (error) {
+    return response(res, 404, 'error response')
+  }
+}
+
+export async function getById(req: Request, res: Response, next: NextFunction) {
+  const id = parseInt(req.params.id);
+  if(!validateInteger(id) || !id){
+    return response(res, 404, 'location id invalid')
+  }
+  try {
+    const cities = await prisma.city.findMany({
+      where: {
+        provinceId: id,
+      },
+    });
+    if (cities.length === 0) {
+      const result = await prisma.city.findMany({
+        where: {
+          id,
+        },
+      });
+
+      if (result.length === 0) {
+        return response(res, 404, 'error response')
+      }
+      return response(res, 200, 'get city detail success',result[0])
+    }
+    response(res, 200, 'get city detail success',cities)
+  } catch (error) {
+    return response(res, 404, 'error response')
+  }
+}
