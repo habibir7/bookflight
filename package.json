@@ -10,7 +10,9 @@
     "dev-old": "tsc && node ./dist/src/index.js",
     "dev": "pnpx nodemon",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc && node ./dist/src/index.j"
+    "build": "tsc && node ./dist/src/index.j",
+    "start": "node ./dist/src/index.js",
+    "postbuild" : "mv node_module ./dist"
   },
   "keywords": [],
   "author": "",
