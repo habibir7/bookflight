@@ -1,0 +1,217 @@
+{
+	"info": {
+		"_postman_id": "9ca492a3-2ff9-48b0-81a5-8593a33654ce",
+		"name": "Angkasa",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21417238"
+	},
+	"item": [
+		{
+			"name": "Auth Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "ega@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12345E@n",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/users/login",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Auth Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "ega",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "ega@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12345E@n",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/users/register",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/users",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Detail",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiZWdhIiwidW5pcUlkIjoiNWFkNGQ0MGMtNTVjNS00YzA0LWExMmMtZTVlZmJkYjkyMjg4IiwiZW1haWwiOiJlZ2FAZ21haWwuY29tIiwiaXNBY3RpdmUiOmZhbHNlLCJpYXQiOjE2OTQ1ODQ0ODAsImV4cCI6MTY5NzE3NjQ4MH0.OI41hq4ivluxyP_6CBJa5fk8nasbJWXSqcI-AIN2u3A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/users/detail",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users",
+						"detail"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "oldpedurena@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "old",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "123465@Aa",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/users/activated",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users",
+						"activated"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Token Checker",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiZWdhIiwidW5pcUlkIjoiNWFkNGQ0MGMtNTVjNS00YzA0LWExMmMtZTVlZmJkYjkyMjg4IiwiZW1haWwiOiJlZ2FAZ21haWwuY29tIiwiaXNBY3RpdmUiOmZhbHNlLCJpYXQiOjE2OTQ1ODQ0ODAsImV4cCI6MTY5NzE3NjQ4MH0.OI41hq4ivluxyP_6CBJa5fk8nasbJWXSqcI-AIN2u3A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "oldpedurena@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "old",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123465@Aa",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/users/token",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"users",
+						"token"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
