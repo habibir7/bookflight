@@ -31,15 +31,13 @@ async function sendMail(mailOptions: MailOptions): Promise<string | boolean> {
   }
 }
 
-const sendEmail = async (emailClient: string, url: string, name: string): Promise<string | boolean> => {
+export const sendEmailActivated = async (emailClient: string, url: string, name: string): Promise<string | boolean> => {
   const mailOptions: MailOptions = {
     from: process.env.EMAIL_NAME!,
     to: emailClient,
-    subject: `Recipe activated email for ${name}`,
-    text: `Hello ${name}, this is your link for activated account: ${url}`,
+    subject: `Angkasa activated email for ${name}`,
+    text: `Hello ${name}, this is your user activated link: ${url}`,
   };
 
   return await sendMail(mailOptions);
 };
-
-export default sendEmail;

@@ -87,9 +87,10 @@ export async function login(req: Request, res: Response, next: NextFunction) {
 
         const user = searchUser[0];
 
-        if (!user.isActive) {
-            return response(res, 401, 'Email not active, please activate');
-        }
+        // disable isactive and activated user api
+        // if (!user.isActive) {
+        //     return response(res, 401, 'Email not active, please activate');
+        // }
 
         const verify = await argon2.verify(user.password, password);
 
