@@ -7,6 +7,297 @@
 	},
 	"item": [
 		{
+			"name": "Ticket",
+			"item": [
+				{
+					"name": "facilities",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "wifi",
+									"description": "baggage | meal | wifi",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/airlines/facilities",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"airlines",
+								"facilities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "facilities",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/airlines/facilities",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"airlines",
+								"facilities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "airports",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}/airlines/airports",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"airlines",
+								"airports"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "airports",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\r\n    \"name\": \"Polonia International Airport\",\r\n    \"code\": \"MES\",\r\n    \"location\": \"Medan, Indonesia\",\r\n    \"terminal\": \"Terminal 1\",\r\n    \"country\": \"Indonesia\",\r\n    \"latitude\": 3.5591,\r\n    \"longitude\": 98.6714\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/airlines/airports",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"airlines",
+								"airports"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "airports seeder",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}/airlines/airports/seeder",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"airlines",
+								"airports",
+								"seeder"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "airline",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}/airlines/airline",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"airlines",
+								"airline"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "airline",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Singapore Airlines",
+									"type": "text"
+								},
+								{
+									"key": "photo",
+									"value": "https://daisycon.io/images/airline/?width=300&height=150&color=ffffff&iata=sq",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/airlines/airline",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"airlines",
+								"airline"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "airline seeder",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{base_url}}/airlines/airline/seeder",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"airlines",
+								"airline",
+								"seeder"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "flight",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}/airlines/flight",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"airlines",
+								"flight"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "flight",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "Singapore Airlines",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "photo",
+									"value": "https://daisycon.io/images/airline/?width=300&height=150&color=ffffff&iata=sq",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/airlines/flight",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"airlines",
+								"flight"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "airline seeder Copy",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{base_url}}/airlines/airline/seeder",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"airlines",
+								"airline",
+								"seeder"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Auth Login",
 			"request": {
 				"method": "POST",
@@ -16,12 +307,12 @@
 					"urlencoded": [
 						{
 							"key": "email",
-							"value": "era@gmail.com",
+							"value": "oldpedurenan@gmail.com",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "12345E@n",
+							"value": "123465@Ai",
 							"type": "text"
 						}
 					]
@@ -49,12 +340,12 @@
 					"urlencoded": [
 						{
 							"key": "name",
-							"value": "era",
+							"value": "oldpedurenan",
 							"type": "text"
 						},
 						{
 							"key": "email",
-							"value": "era@gmail.com",
+							"value": "oldpedurenan@gmail.com",
 							"type": "text"
 						},
 						{
@@ -78,7 +369,7 @@
 			"response": []
 		},
 		{
-			"name": "Auth Activeted",
+			"name": "Auth Activated",
 			"request": {
 				"method": "POST",
 				"header": [],
@@ -112,6 +403,167 @@
 					"path": [
 						"auth",
 						"activated"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Auth Get New Token",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "refresh_token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImVyYUBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiRhcmdvbjJpZCR2PTE5JG09NjU1MzYsdD0zLHA9NCRUdjBXaTQvbzZTUElWa2l6bG1JVTlRJGQrV0d5RlhRaHJvNldjTFFEcHp0ckJzYVVQOW5hWmFXZlA1QU1NSnZHNTgiLCJpYXQiOjE2OTQ5NTQ0MjV9.lEbxDQiLg5Dp0-Ul_78DPJBF738opmOCMElRCLxbJUs",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/auth/newtoken",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"auth",
+						"newtoken"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Auth Forgot Password",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "oldpedurenan@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "fe_url",
+							"value": "http://localhost:3001/auth/new_password",
+							"description": "http://localhost:3001/auth/new_password/uuid\nuuid from be activation code",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123465@Aa",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/auth/forgot_password",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"auth",
+						"forgot_password"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Auth New Password",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiZWdhIiwidW5pcUlkIjoiNWFkNGQ0MGMtNTVjNS00YzA0LWExMmMtZTVlZmJkYjkyMjg4IiwiZW1haWwiOiJlZ2FAZ21haWwuY29tIiwiaXNBY3RpdmUiOmZhbHNlLCJpYXQiOjE2OTQ1ODQ0ODAsImV4cCI6MTY5NzE3NjQ4MH0.OI41hq4ivluxyP_6CBJa5fk8nasbJWXSqcI-AIN2u3A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "request_code",
+							"value": "58726519-c9d7-44af-a261-85f2d71d2be1",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "oldpedurenan@gmail.com",
+							"description": "get email from forgot password value",
+							"type": "text"
+						},
+						{
+							"key": "new_password",
+							"value": "123465@Ai",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/auth/new_password",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"auth",
+						"new_password"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Auth Send Email Checker",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiZWdhIiwidW5pcUlkIjoiNWFkNGQ0MGMtNTVjNS00YzA0LWExMmMtZTVlZmJkYjkyMjg4IiwiZW1haWwiOiJlZ2FAZ21haWwuY29tIiwiaXNBY3RpdmUiOmZhbHNlLCJpYXQiOjE2OTQ1ODQ0ODAsImV4cCI6MTY5NzE3NjQ4MH0.OI41hq4ivluxyP_6CBJa5fk8nasbJWXSqcI-AIN2u3A",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "oldpedurenan@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "{{base_url}}/auth/email_checker",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"auth",
+						"email_checker"
 					]
 				}
 			},

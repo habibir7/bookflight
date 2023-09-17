@@ -2,7 +2,7 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
   binaryTargets = ["native", "rhel-openssl-1.0.x"]
 }
 
@@ -32,22 +32,22 @@ model Profile {
 }
 
 model User {
-  id        Int       @id @default(autoincrement())
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  uniqId    String
-  email     String    @unique
-  password  String
-  name      String?
-  posts     Post[]
-  profile   Profile?
-  isActive Boolean   @default(false)
-  status String?
-  phone     String?
-  fullname  String?
-  city   String?     
-  country String?
-  Address   Address[]
+  id           Int            @id @default(autoincrement())
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  uniqId       String
+  email        String         @unique
+  password     String
+  name         String?
+  posts        Post[]
+  profile      Profile?
+  isActive     Boolean        @default(false)
+  status       String?
+  phone        String?
+  fullname     String?
+  city         String?
+  country      String?
+  Address      Address[]
   TicketFlight TicketFlight[]
 }
 
@@ -74,27 +74,28 @@ model City {
 }
 
 model Airline {
-  id    Int     @id @default(autoincrement())
-  name  String
-  photo String?
+  id             Int              @id @default(autoincrement())
+  name           String
+  photo          String?
+  FlightSchedule FlightSchedule[]
 }
 
 model Airport {
-  id      Int              @id @default(autoincrement())
-  name    String
-  code    String
-  location String
-  terminal String 
-  country String
-  latitude Float    
-  longitude Float    
-  from    FlightSchedule[] @relation(name: "from")
-  to      FlightSchedule[] @relation(name: "to")
+  id        Int              @id @default(autoincrement())
+  name      String
+  code      String
+  location  String
+  terminal  String
+  country   String
+  latitude  Float
+  longitude Float
+  from      FlightSchedule[] @relation(name: "from")
+  to        FlightSchedule[] @relation(name: "to")
 }
 
 model FlightSchedule {
   id               Int                @id @default(autoincrement())
-  code             String
+  code             String @unique
   takeoff          DateTime
   landing          DateTime
   from             Airport            @relation(name: "from", fields: [airportIdfrom], references: [id])
@@ -103,12 +104,14 @@ model FlightSchedule {
   airportIdto      Int
   transit          Int                @default(0)
   FlightFacilities FlightFacilities[]
+  airlineId        Int
+  airline          Airline            @relation(fields: [airlineId], references: [id])
 }
 
 model FlightFacilities {
   id               Int            @id @default(autoincrement())
-  flightSchedule   FlightSchedule @relation(fields: [flightScheduleId], references: [id])
-  flightScheduleId Int
+  flightSchedule   FlightSchedule @relation(fields: [flightScheduleId], references: [code])
+  flightScheduleId String
   listSchedule     Facilities     @relation(fields: [listScheduleId], references: [id])
   listScheduleId   Int
 }
@@ -120,29 +123,29 @@ model Facilities {
 }
 
 model TicketFlight {
-  id Int @id @default(autoincrement())
-  passenger User @relation(fields: [passengerId],references: [id])
-  passengerId Int
+  id              Int                @id @default(autoincrement())
+  passenger       User               @relation(fields: [passengerId], references: [id])
+  passengerId     Int
   PassengerDetail PassengerDetail[]
-  isRefundable Boolean
+  isRefundable    Boolean
   iscanReschedule Boolean
   isWithInsurance Boolean
-  totalPayment Int
-  status TicketFlightStatus @relation(fields: [statusId],references: [id])
-  statusId Int
+  totalPayment    Int
+  status          TicketFlightStatus @relation(fields: [statusId], references: [id])
+  statusId        Int
 }
 
 model PassengerDetail {
-  id Int @id @default(autoincrement())
-  title String
-  fullname String
-  nationality String
-  ticketFlight TicketFlight @relation(fields: [ticketFlightId],references: [id])
+  id             Int          @id @default(autoincrement())
+  title          String
+  fullname       String
+  nationality    String
+  ticketFlight   TicketFlight @relation(fields: [ticketFlightId], references: [id])
   ticketFlightId Int
 }
 
 model TicketFlightStatus {
-  id Int @id @default(autoincrement())
-  name String
+  id           Int            @id @default(autoincrement())
+  name         String
   TicketFlight TicketFlight[]
 }
