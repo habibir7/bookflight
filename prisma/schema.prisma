@@ -45,8 +45,8 @@ model User {
   status String?
   phone     String?
   fullname  String?
-  regency   City?      @relation(fields: [regencyId], references: [id])
-  regencyId Int?
+  city   String?     
+  country String?
   Address   Address[]
   TicketFlight TicketFlight[]
 }
@@ -71,8 +71,6 @@ model City {
   name       String?
   provinceId Int
   province   Provinces @relation(fields: [provinceId], references: [id])
-  User       User[]
-  Airport    Airport[]
 }
 
 model Airline {
@@ -85,8 +83,11 @@ model Airport {
   id      Int              @id @default(autoincrement())
   name    String
   code    String
-  regency City             @relation(fields: [cityId], references: [id])
-  cityId  Int
+  location String
+  terminal String 
+  country String
+  latitude Float    
+  longitude Float    
   from    FlightSchedule[] @relation(name: "from")
   to      FlightSchedule[] @relation(name: "to")
 }

@@ -15,7 +15,7 @@ interface LoginResult {
 
 export async function get(req: Request, res: Response, next: NextFunction) {
   const result = await prisma.user.findMany({
-    include: { Address: true, TicketFlight: true, regency: true, posts: true }
+    include: { Address: true, TicketFlight: true, posts: true }
   })
   res.json(result)
 }
@@ -31,7 +31,7 @@ export async function detail(req: CustomRequest, res: Response, next: NextFuncti
   let { email } = req.payload
   const detailUser = await prisma.user.findMany({
     where: { email },
-    include: { Address: true, TicketFlight: true, regency: true, posts: true }
+    include: { Address: true, TicketFlight: true, posts: true }
   })
   // postpone
   const user = detailUser[0];
@@ -51,7 +51,7 @@ export async function getByUserId(req: Request, res: Response, next: NextFunctio
   let { id } = req.params
   const detailUser = await prisma.user.findMany({
     where: { uniqId:id },
-    include: { Address: true, TicketFlight: true, regency: true, posts: true }
+    include: { Address: true, TicketFlight: true, posts: true }
   })
   const user = detailUser[0];
   const { name, fullname, isActive } = user;
@@ -69,7 +69,7 @@ export async function update(req: CustomRequest, res: Response, next: NextFuncti
   let { email } = req.payload
   const detailUser = await prisma.user.findMany({
     where: { email },
-    include: { Address: true, TicketFlight: true, regency: true, posts: true }
+    include: { Address: true, TicketFlight: true, posts: true }
   })
   // postpone
   const result = {
