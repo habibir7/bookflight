@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { PrismaClient } from "@prisma/client";
 import response from '../helpers/Common'
+import {CustomRequest} from '../helpers/Token'
 const prisma = new PrismaClient()
 
 interface LoginResult {
@@ -10,10 +11,6 @@ interface LoginResult {
   phone?: string | null;
   fullname?: string | null;
   isActive: boolean;
-}
-
-interface CustomRequest<T = any> extends Request {
-  payload: T;
 }
 
 export async function get(req: Request, res: Response, next: NextFunction) {

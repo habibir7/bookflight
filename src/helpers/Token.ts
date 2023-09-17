@@ -8,9 +8,13 @@ export interface CustomRequest<T = any> extends Request {
     payload: T;
 }
 
-const Token = {
+export const Token = {
     generateToken: (payload: any): string => {
         const token = jwt.sign(payload, process.env.JWT_KEY!, { expiresIn: '30d' });
+        return token;
+    },
+    generateRefreshToken: (payload: any): string => {
+        const token = jwt.sign(payload, process.env.JWT_KEY!);
         return token;
     },
     checkToken: async (req: CustomRequest, res: Response, next: NextFunction) => {
@@ -36,6 +40,8 @@ const Token = {
             }
         }
     },
+    decodeToken: (payload: any): any => {
+        const decoded = jwt.verify(payload, process.env.JWT_KEY!);
+        return decoded
+    },
 };
-
-export default Token;

@@ -41,3 +41,14 @@ export const sendEmailActivated = async (emailClient: string, url: string, name:
 
   return await sendMail(mailOptions);
 };
+
+export const sendLinkChangePassword = async (emailClient: string, url: string, name: string): Promise<string | boolean> => {
+  const mailOptions: MailOptions = {
+    from: process.env.EMAIL_NAME!,
+    to: emailClient,
+    subject: `Angkasa request new password for ${name}`,
+    text: `Hello ${name}, this is your request password link: ${url}`,
+  };
+
+  return await sendMail(mailOptions);
+};

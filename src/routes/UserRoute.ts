@@ -1,6 +1,6 @@
 import express from "express"
 import {detail,checkToken,get,update,getByUserId} from "../controller/User"
-import Token from "../helpers/Token"
+import {Token} from "../helpers/Token"
 
 const router = express.Router()
 
