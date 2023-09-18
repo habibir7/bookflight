@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import { PrismaClient } from "@prisma/client";
 import response from '../helpers/Common'
 import { CustomRequest } from '../helpers/Token'
-import { airport,airline } from "../../lib/seeder";
+import { airport,airline } from "../seeder/seeder";
 import { v4 as uuidv4 } from 'uuid';
 const prisma = new PrismaClient()
 
