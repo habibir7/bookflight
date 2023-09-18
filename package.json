@@ -10,7 +10,7 @@
     "dev-old": "tsc && node ./dist/src/index.js",
     "dev": "pnpx nodemon",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "prisma generate && prisma migrate deploy && tsc && mv node_modules ./dist",
+    "build": "prisma generate && prisma migrate deploy &&  prisma db push && tsc && mv node_modules ./dist",
     "start": "node ./src/index.js",
     "prisma:generate": "prisma generate"
   },
