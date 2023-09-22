@@ -309,6 +309,64 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "booking ticket",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxSWQiOiJiNmJhYzhiNC0wMTYyLTQ2NDEtYTMzMC01YzUwMjRlYWYzMzkiLCJlbWFpbCI6Im9sZHBlZHVyZW5hbkBnbWFpbC5jb20iLCJuYW1lIjoib2xkcGVkdXJlbmFuIiwiaXNBY3RpdmUiOmZhbHNlLCJpYXQiOjE2OTUzNjQwODYsImV4cCI6MTY5Nzk1NjA4Nn0.wfPF1kmEwxjZegl4NMDGx9tlrOpA53ml6a5wayLUYy0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{base_url}}/booking/ticket",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"booking",
+								"ticket"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "booking status",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}/booking/status/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"booking",
+								"status",
+								""
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -364,6 +422,32 @@
 					"response": []
 				},
 				{
+					"name": "flight - Get By Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}/airlines/flight/2ab7e483-7515-4282-9af2-63c588207e9f",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"airlines",
+								"flight",
+								"2ab7e483-7515-4282-9af2-63c588207e9f"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "flight - Get All",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -389,26 +473,166 @@
 					"response": []
 				},
 				{
-					"name": "flight - Get By Id",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
+					"name": "booking tickets",
 					"request": {
-						"method": "GET",
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxSWQiOiJiNmJhYzhiNC0wMTYyLTQ2NDEtYTMzMC01YzUwMjRlYWYzMzkiLCJlbWFpbCI6Im9sZHBlZHVyZW5hbkBnbWFpbC5jb20iLCJuYW1lIjoib2xkcGVkdXJlbmFuIiwiaXNBY3RpdmUiOmZhbHNlLCJpYXQiOjE2OTUzNjQwODYsImV4cCI6MTY5Nzk1NjA4Nn0.wfPF1kmEwxjZegl4NMDGx9tlrOpA53ml6a5wayLUYy0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "formdata",
-							"formdata": []
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title1",
+									"value": "mr",
+									"type": "text"
+								},
+								{
+									"key": "fullname1",
+									"value": "oldp",
+									"type": "text"
+								},
+								{
+									"key": "nationality1",
+									"value": "indonesia",
+									"type": "text"
+								},
+								{
+									"key": "title2",
+									"value": "ms",
+									"type": "text"
+								},
+								{
+									"key": "fullname2",
+									"value": "kizu",
+									"type": "text"
+								},
+								{
+									"key": "nationality2",
+									"value": "indonesia",
+									"type": "text"
+								}
+							]
 						},
 						"url": {
-							"raw": "{{base_url}}/airlines/flight/2ab7e483-7515-4282-9af2-63c588207e9f",
+							"raw": "{{base_url}}/booking/tickets/",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
-								"airlines",
-								"flight",
-								"2ab7e483-7515-4282-9af2-63c588207e9f"
+								"booking",
+								"tickets",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "booking tickets",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxSWQiOiJiNmJhYzhiNC0wMTYyLTQ2NDEtYTMzMC01YzUwMjRlYWYzMzkiLCJlbWFpbCI6Im9sZHBlZHVyZW5hbkBnbWFpbC5jb20iLCJuYW1lIjoib2xkcGVkdXJlbmFuIiwiaXNBY3RpdmUiOmZhbHNlLCJpYXQiOjE2OTUzNjQwODYsImV4cCI6MTY5Nzk1NjA4Nn0.wfPF1kmEwxjZegl4NMDGx9tlrOpA53ml6a5wayLUYy0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{base_url}}/booking/tickets/",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"booking",
+								"tickets",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "booking tickets by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxSWQiOiJiNmJhYzhiNC0wMTYyLTQ2NDEtYTMzMC01YzUwMjRlYWYzMzkiLCJlbWFpbCI6Im9sZHBlZHVyZW5hbkBnbWFpbC5jb20iLCJuYW1lIjoib2xkcGVkdXJlbmFuIiwiaXNBY3RpdmUiOmZhbHNlLCJpYXQiOjE2OTUzNjQwODYsImV4cCI6MTY5Nzk1NjA4Nn0.wfPF1kmEwxjZegl4NMDGx9tlrOpA53ml6a5wayLUYy0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": []
+						},
+						"url": {
+							"raw": "{{base_url}}/booking/tickets/86dd6dd5-b9f0-4abb-9762-02fe366d6c32",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"booking",
+								"tickets",
+								"86dd6dd5-b9f0-4abb-9762-02fe366d6c32"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "booking status",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "statusId",
+									"value": "2",
+									"description": "1 = pending | 2 = Confirmed | 3 = Canceled",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/booking/status/86dd6dd5-b9f0-4abb-9762-02fe366d6c32",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"booking",
+								"status",
+								"86dd6dd5-b9f0-4abb-9762-02fe366d6c32"
 							]
 						}
 					},

@@ -6,7 +6,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { checkListFacilities, validateInteger } from "../helpers/Validator";
 const prisma = new PrismaClient()
 
-const toHoursAndMinutes = (start: string, finish: string): string => {
+export const toHoursAndMinutes = (start: string, finish: string): string => {
   const startDate: any = new Date(start)
   const finishDate: any = new Date(finish)
   const totalMinutes = Math.floor((finishDate - startDate) / 60000)
@@ -75,7 +75,7 @@ export async function postAirports(req: Request, res: Response, next: NextFuncti
 }
 export async function postAirportsSeeder(req: Request, res: Response, next: NextFunction) {
   try {
-    let data = JSON.parse(airport)
+    let data = JSON.parse(JSON.stringify(airport))
     const result = await prisma.airport.createMany({ data })
     return response(res, 200, 'post airport success', result)
   } catch (error) {
@@ -105,7 +105,7 @@ export async function postAirline(req: Request, res: Response, next: NextFunctio
 }
 export async function postAirlineSeeder(req: Request, res: Response, next: NextFunction) {
   try {
-    let data = JSON.parse(airline)
+    let data = JSON.parse(JSON.stringify(airline))
     const result = await prisma.airline.createMany({ data })
     return response(res, 200, 'post airline success', result)
   } catch (error) {

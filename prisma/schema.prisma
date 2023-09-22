@@ -134,6 +134,7 @@ model TicketFlight {
   totalPayment    Int
   status          TicketFlightStatus @relation(fields: [statusId], references: [id])
   statusId        Int
+  code          String
 }
 
 model PassengerDetail {

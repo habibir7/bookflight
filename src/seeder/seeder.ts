@@ -1,4 +1,4 @@
-export let airport = `[
+export let airport = [
     {
         "name": "John F. Kennedy International Airport",
         "code": "JFK",
@@ -62,9 +62,9 @@ export let airport = `[
         "latitude": -6.1256,
         "longitude": 106.6558
     }
-]`
+]
 
-export let airline = `[
+export let airline = [
     {
         "name": "Garuda Indonesia",
         "photo": "https://daisycon.io/images/airline/?width=300&height=150&color=ffffff&iata=ga"
@@ -80,4 +80,10 @@ export let airline = `[
     {
         "name": "Citilink",
         "photo": "https://daisycon.io/images/airline/?width=300&height=150&color=ffffff&iata=qg"
-    }]`
+    }]
+
+export let statusFlight = [
+    { 'name': 'Pending' },
+    { 'name': 'Confirmed' },
+    { 'name': 'Cancelled' }
+]
