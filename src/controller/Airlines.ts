@@ -134,9 +134,16 @@ export async function getFlight(req: Request, res: Response, next: NextFunction)
   } else{
     listFacilities = [1]
   }
-  
-  console.log('airline id',Number(airlineId))
-  console.log('listFacilities',listFacilities)
+  let listAirlines: number[] = [];
+  if (airlineId) {
+    listAirlines = (airlineId as string).split(',').map((item: string) => parseInt(item));
+  } 
+  let airlineQuery
+  if(airlineId){
+    airlineQuery = {in: listAirlines}
+  } else {
+    airlineQuery = undefined
+  }
 
   const result = await prisma.flightSchedule.findMany({
     include: {
@@ -146,12 +153,10 @@ export async function getFlight(req: Request, res: Response, next: NextFunction)
         gte: parseInt(minPrice as string | undefined ?? '0') || 0,
         lte: parseInt(maxPrice as string | undefined ?? '1000000')|| 1000000,
       },
-      airlineId : Number(airlineId) || undefined,
-      FlightFacilities:{some:{listScheduleId:{in:listFacilities}}}
+      FlightFacilities:{some:{listScheduleId:{in:listFacilities}}},
+      airlineId :  airlineQuery,
     },
   })
-
-  // FlightFacilities filter result
   let filtered_result =  result.filter((schedule) =>
   listFacilities.every((id) =>
     schedule.FlightFacilities.some((facility) => facility.listScheduleId === id)
