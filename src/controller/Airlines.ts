@@ -121,19 +121,22 @@ export async function getFlight(req: Request, res: Response, next: NextFunction)
   try{
 
     const {
-      transport,
-      facilities,
-    departureTimeStart,
-    departureTimeEnd,
-    arrivalTimeStart,
-    arrivalTimeEnd,
+    facilities,
     airlineId,
     minPrice,
     maxPrice,
   } = req.query;
 
-  console.log('min',parseInt(minPrice as string | undefined ?? '0') || 0)
-  console.log('max',parseInt(maxPrice as string | undefined ?? Number.MAX_SAFE_INTEGER.toString()) || Number.MAX_SAFE_INTEGER)
+  
+  let listFacilities: number[] = [];
+  if (facilities) {
+    listFacilities = (facilities as string).split(',').map((item: string) => parseInt(item));
+  } else{
+    listFacilities = [1]
+  }
+  
+  console.log('airline id',Number(airlineId))
+  console.log('listFacilities',listFacilities)
 
   const result = await prisma.flightSchedule.findMany({
     include: {
@@ -141,14 +144,24 @@ export async function getFlight(req: Request, res: Response, next: NextFunction)
     }, where: {
       price: {
         gte: parseInt(minPrice as string | undefined ?? '0') || 0,
-        lte: parseInt(maxPrice as string | undefined ?? Number.MAX_SAFE_INTEGER.toString()) || Number.MAX_SAFE_INTEGER,
+        lte: parseInt(maxPrice as string | undefined ?? '1000000')|| 1000000,
       },
+      airlineId : Number(airlineId) || undefined,
+      FlightFacilities:{some:{listScheduleId:{in:listFacilities}}}
     },
   })
-  let new_result = flight_result(result)
+
+  // FlightFacilities filter result
+  let filtered_result =  result.filter((schedule) =>
+  listFacilities.every((id) =>
+    schedule.FlightFacilities.some((facility) => facility.listScheduleId === id)
+  ))
+  
+  let new_result = flight_result(filtered_result)
+  console.log(new_result.length)
   return response(res, 200, 'get flightSchedule success', new_result)
 } catch(error){
-    return response(res, 494, 'get flightSchedule failed')
+    return response(res, 400, 'get flightSchedule failed')
   }
 }
 export async function getFlightAll(req: Request, res: Response, next: NextFunction) {
@@ -161,7 +174,7 @@ export async function getFlightAll(req: Request, res: Response, next: NextFuncti
 
   // get info
 
-
+  console.log(new_result.length)
   let pagination = { count: new_result.length || 0 };
   return response(res, 200, 'get flightSchedule success', data, pagination)
 }
