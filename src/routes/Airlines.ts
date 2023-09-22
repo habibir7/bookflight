@@ -1,5 +1,5 @@
 import express,{ Request, Response, NextFunction } from "express";
-import {getFacilities,postFacilities,getAirports,postAirports,postAirportsSeeder,getAirline,postAirline,postAirlineSeeder,getFlight,postFlight,postFlightSeeder} from "../controller/Airlines"
+import {getFacilities,postFacilities,getAirports,postAirports,postAirportsSeeder,getAirline,postAirline,postAirlineSeeder,getFlight,postFlight,postFlightSeeder,getFlightDetail,getFlightAll} from "../controller/Airlines"
 
 const router = express.Router()
 
@@ -14,6 +14,8 @@ router.get('/airline',getAirline)
 router.post('/airline',postAirline)
 router.post('/airline/seeder',postAirlineSeeder)
 router.get('/flight',getFlight)
+router.get('/flight-all',getFlightAll)
+router.get('/flight/:code',getFlightDetail)
 router.post('/flight',postFlight)
 router.post('/flight/seeder',postFlightSeeder)
 

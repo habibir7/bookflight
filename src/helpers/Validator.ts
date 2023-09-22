@@ -48,7 +48,21 @@ const intgerSchema = z
     .number()
 export const validateInteger = (count: number): boolean => {
     try {
+        if(count === 0) throw Error()
         intgerSchema.parse(count);
+        return true;
+    } catch (error) {
+        return false;
+    }
+}
+
+const listFacilitiesSchema = z.array(
+    z.number(),
+)
+
+export const checkListFacilities = (listData: Array<number>): boolean => {
+    try {
+        listFacilitiesSchema.parse(listData);
         return true;
     } catch (error) {
         return false;

@@ -95,7 +95,7 @@ model Airport {
 
 model FlightSchedule {
   id               Int                @id @default(autoincrement())
-  code             String @unique
+  code             String             @unique
   takeoff          DateTime
   landing          DateTime
   from             Airport            @relation(name: "from", fields: [airportIdfrom], references: [id])
@@ -106,6 +106,7 @@ model FlightSchedule {
   FlightFacilities FlightFacilities[]
   airlineId        Int
   airline          Airline            @relation(fields: [airlineId], references: [id])
+  price            Int
 }
 
 model FlightFacilities {
