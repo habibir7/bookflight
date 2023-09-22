@@ -213,7 +213,7 @@
 					"response": []
 				},
 				{
-					"name": "flight",
+					"name": "flight - Main",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -246,27 +246,42 @@
 							"mode": "urlencoded",
 							"urlencoded": [
 								{
-									"key": "name",
-									"value": "Singapore Airlines",
-									"type": "text",
-									"disabled": true
+									"key": "airportIdfrom",
+									"value": "2",
+									"type": "text"
 								},
 								{
-									"key": "photo",
-									"value": "https://daisycon.io/images/airline/?width=300&height=150&color=ffffff&iata=sq",
-									"type": "text",
-									"disabled": true
+									"key": "airportIdto",
+									"value": "3",
+									"type": "text"
+								},
+								{
+									"key": "airlineId",
+									"value": "5",
+									"type": "text"
+								},
+								{
+									"key": "facilities",
+									"value": "1,3",
+									"description": "1 = Baggage | 2 = meal | 3 = wifi",
+									"type": "text"
+								},
+								{
+									"key": "price",
+									"value": "250",
+									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "{{base_url}}/airlines/flight",
+							"raw": "{{base_url}}/airlines/flight/",
 							"host": [
 								"{{base_url}}"
 							],
 							"path": [
 								"airlines",
-								"flight"
+								"flight",
+								""
 							]
 						}
 					},
@@ -290,6 +305,110 @@
 								"airlines",
 								"airline",
 								"seeder"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Book",
+			"item": [
+				{
+					"name": "flight - Get With Params",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}/airlines/flight",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"airlines",
+								"flight"
+							],
+							"query": [
+								{
+									"key": "facilities",
+									"value": "1",
+									"description": "1 = baggage | 2 = meal | 3 = wifi",
+									"disabled": true
+								},
+								{
+									"key": "airlineId",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "minPrice",
+									"value": "210",
+									"disabled": true
+								},
+								{
+									"key": "maxPrice",
+									"value": "250",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "flight - Get All",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}/airlines/flight-all",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"airlines",
+								"flight-all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "flight - Get By Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{base_url}}/airlines/flight/2ab7e483-7515-4282-9af2-63c588207e9f",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"airlines",
+								"flight",
+								"2ab7e483-7515-4282-9af2-63c588207e9f"
 							]
 						}
 					},
