@@ -7,7 +7,7 @@ const router = express.Router()
 
 
 router.post('/status',postStatusSeeder)
-router.post('/tickets',Token.checkToken as any,postTickets as any)
+router.post('/tickets/:code',Token.checkToken as any,postTickets as any)
 router.get('/tickets',Token.checkToken as any,getTicketUser as any)
 router.get('/tickets/:code',Token.checkToken as any,getTicketById as any)
 router.get('/status',getStatus)

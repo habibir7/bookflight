@@ -42,10 +42,26 @@ export async function getStatus(req: Request, res: Response, next: NextFunction)
 export async function postTickets(req: CustomRequest, res: Response, next: NextFunction) {
     try {
         // let data = JSON.parse(JSON.stringify(statusFlight))
+        const {code} = req.params
+        console.log('code',code)
+        if(!code){
+            return response(res, 404, 'code flight invalid')
+        }
+        // get ticket
+        const ticket = await prisma.flightSchedule.findMany({where: { code } })
+        
+        if(ticket.length === 0){
+            return response(res, 404, 'code flight not found')
+        }
+
+        const ticketId = ticket[0].id
+
+
         const email = req.payload.email
         const searchUser = await prisma.user.findMany({
             where: { email },
         });
+
 
         const { title, fullname, nationality } = req.body
         console.log(title, fullname, nationality)
@@ -78,10 +94,10 @@ export async function postTickets(req: CustomRequest, res: Response, next: NextF
             PassengerDetail: {
                 create: ListPassengerDetail
             },
-
+            ticketId
         }
-        console.log(searchUser)
-        const result = await prisma.ticketFlight.create({ data })
+        // console.log(searchUser)
+        const result = await prisma.ticketFlight.create({ data, include:{ticket:{include:{FlightFacilities:{include:{listSchedule:true}},airline:true,from:true,to:true}}} })
         return response(res, 200, 'post tickets success', result)
     } catch (error) {
         console.error('Error:', error);
@@ -106,7 +122,7 @@ export async function getTicketUser(req: CustomRequest, res: Response, next: Nex
             isActive,
         };
 
-        const result = await prisma.ticketFlight.findMany({ include: { PassengerDetail: true, status: true, passenger: true } })
+        const result = await prisma.ticketFlight.findMany({ include: { PassengerDetail: true, status: true, passenger: true,ticket:{include:{FlightFacilities:{include:{listSchedule:true}},airline:true,from:true,to:true}} } })
 
         const new_result = { user: resultLogin, result }
 
@@ -134,7 +150,7 @@ export async function getTicketById(req: CustomRequest, res: Response, next: Nex
             isActive,
         };
 
-        const result = await prisma.ticketFlight.findMany({ include: { PassengerDetail: true, status: true, passenger: true }, where: { code } })
+        const result = await prisma.ticketFlight.findMany({ include: { PassengerDetail: true, status: true, passenger: true,ticket:{include:{FlightFacilities:{include:{listSchedule:true}},airline:true,from:true,to:true}} }, where: { code } })
 
         const new_result = { user: resultLogin, result: result[0] }
 
