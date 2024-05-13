@@ -5,6 +5,6 @@
     "strict": true,
     "lib": ["esnext"],
     "esModuleInterop": true,
-    "module": "CommonJS"
+    "target": "ES2017"
   }
 }
