@@ -8,10 +8,4 @@
         }
       ],
       "outputDirectory": "public",
-    "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "/"
-        }
-    ]
 }
