@@ -20,5 +20,5 @@ app.use(morgan('dev'))
 app.use("/",router)
 
 app.listen(process.env.PORT!, () =>
-  console.log(`⚡️[server]: Server is running at http://localhost:3000`)
+  console.log(`⚡️[server]: Server is running at http://localhost:${process.env.PORT}`)
 )
